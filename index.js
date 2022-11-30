@@ -17,12 +17,27 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
         const simpleBikeCollection = client.db('bikeLagbe').collection('simpleBike');
+        const standardBikeCollection = client.db('bikeLagbe').collection('standardBike');
+        const premiumBikeCollection = client.db('bikeLagbe').collection('premiumBike');
 
         app.get('/simpleBike', async(req, res) =>{
             const query = {};
             const options = await simpleBikeCollection.find(query).toArray();
             res.send(options);
-        })
+        });
+
+        app.get('/standardBike', async(req, res) =>{
+            const query = {};
+            const options = await standardBikeCollection.find(query).toArray();
+            res.send(options);
+        });
+
+        app.get('/premiumBike', async(req, res) =>{
+            const query = {};
+            const options = await premiumBikeCollection.find(query).toArray();
+            res.send(options);
+        });
+
     }
     finally{
 
